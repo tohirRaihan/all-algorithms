@@ -46,6 +46,9 @@ int main(void) {
 
   // step 5: final array --> backward traversal of basic array
   int final[size];
+  for (int i = 0; i < size; i++) {
+    final[i] = 0;
+  }
 
   for (int i = size - 1; i >= 0; i--) {
     count[arr[i]]--;
