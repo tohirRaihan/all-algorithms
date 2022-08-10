@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <iostream>
 using namespace std;
 
@@ -32,6 +33,47 @@ void insertAtHead(Node *&head, int val) {
   head = newNode;
 }
 
+int countLength(Node *&head) {
+  int count = 0;
+  Node *temp = head;
+  while (temp != NULL) {
+    count++;
+    temp = temp->Next;
+  }
+  return count;
+}
+
+void insertAtSpecificPosition(Node *&head, int pos, int val) {
+  int i = 0;
+  Node *temp = head;
+
+  while (i < pos - 2) {
+    temp = temp->Next;
+    i++;
+  }
+  Node *newNode = new Node(val);
+  newNode->Next = temp->Next;
+  temp->Next = newNode;
+}
+
+int searchByValueUnique(Node *&head, int val) {
+  Node *temp = head;
+  int count = 1;
+
+  if (temp == NULL) {
+    return -1;
+  }
+
+  while (temp->value != val) {
+    if (temp->Next == NULL) {
+      return -1;
+    }
+    temp = temp->Next;
+    count++;
+  }
+  return count;
+}
+
 void display(Node *n) {
   while (n != NULL) {
     cout << n->value << " ";
@@ -50,10 +92,16 @@ int main(void) {
   while (choice == 1 || choice == 2) {
     cout << "Enter The Value" << endl;
     cin >> n;
-    if (choice == 1)
+    switch (choice) {
+    case 1:
       insertAtHead(head, n);
-    else if (choice == 2)
+      break;
+    case 2:
       insertAtTail(head, n);
+      break;
+    default:
+      break;
+    }
     cout << "Next Choice: (1/2/3) ?" << endl;
     cin >> choice;
   }
