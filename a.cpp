@@ -1,23 +1,26 @@
 #include <iostream>
 using namespace std;
 
+class Node {
+public:
+  int value;
+  Node *Next;
+};
+
+void changeValue(Node *head) {
+  Node *temp = head;
+  head->Next = temp;
+  cout << head->Next;
+}
+
 int main(void) {
-  int arr[] = {1, 4, 5, 5, 6, 10};
+  Node *head = new Node;
 
-  int freq[8] = {0};
+  head->value = 1;
+  head->Next = NULL;
 
-  for (int i = 0; i < 8; i++)
+  changeValue(head);
+  cout << head->value;
 
-  {
-
-    freq[arr[i]]++;
-  }
-
-  for (int i = 0; i < 8; i++)
-
-  {
-
-    cout << freq[arr[i]] << " ";
-  }
   return 0;
 }

@@ -73,6 +73,20 @@ int searchByValueUnique(Node *&head, int val) {
   }
   return count;
 }
+
+void searchByValueDuplicate(Node *&head, int val) {
+  Node *temp = head;
+  int count = 1;
+
+  while (temp != NULL) {
+    if (temp->value == val) {
+      cout << count << " ";
+    }
+    temp = temp->Next;
+    count++;
+  }
+}
+
 /* Function to reverse the linked list */
 void reversedListPrint(Node *head) {
   if (head == NULL)
@@ -86,6 +100,7 @@ void display(Node *n) {
     cout << n->value << " ";
     n = n->Next;
   }
+  cout << endl;
 }
 
 int main(void) {
@@ -113,7 +128,8 @@ int main(void) {
     cin >> choice;
   }
   display(head);
-  reversedListPrint(head);
+
+  searchByValueDuplicate(head, 4);
 
   return 0;
 }
