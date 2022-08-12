@@ -77,14 +77,19 @@ int searchByValueUnique(Node *&head, int val) {
 void searchByValueDuplicate(Node *&head, int val) {
   Node *temp = head;
   int count = 1;
+  int flag = 0;
 
   while (temp != NULL) {
     if (temp->value == val) {
       cout << count << " ";
+      flag = 1;
     }
     temp = temp->Next;
     count++;
   }
+
+  if (flag == 0)
+    cout << "Value did not found";
 }
 
 /* Function to reverse the linked list */
