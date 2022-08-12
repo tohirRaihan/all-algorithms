@@ -73,6 +73,13 @@ int searchByValueUnique(Node *&head, int val) {
   }
   return count;
 }
+/* Function to reverse the linked list */
+void reversedListPrint(Node *head) {
+  if (head == NULL)
+    return;
+  reversedListPrint(head->Next);
+  cout << head->value << " ";
+}
 
 void display(Node *n) {
   while (n != NULL) {
@@ -105,7 +112,8 @@ int main(void) {
     cout << "Next Choice: (1/2/3) ?" << endl;
     cin >> choice;
   }
-
   display(head);
+  reversedListPrint(head);
+
   return 0;
 }
