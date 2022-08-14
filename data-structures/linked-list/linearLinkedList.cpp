@@ -92,6 +92,28 @@ void searchByValueDuplicate(Node *&head, int val) {
     cout << "Value did not found";
 }
 
+void deletionAtHead(Node *&head) {
+  Node *temp = head;
+  if (temp != NULL) {
+    head = temp->Next;
+    delete temp;
+  } else {
+    cout << "There is no value in the Linked List" << endl;
+  }
+}
+
+void deletionAtTail(Node *&head) {
+  Node *temp = head;
+  if (temp != NULL && temp->Next != NULL) {
+    while (temp->Next->Next != NULL) {
+      temp = temp->Next;
+    }
+    Node *delNode = temp->Next;
+    temp->Next = NULL;
+    delete delNode;
+  }
+}
+
 /* Function to reverse the linked list */
 void reversedListPrint(Node *head) {
   if (head == NULL)
