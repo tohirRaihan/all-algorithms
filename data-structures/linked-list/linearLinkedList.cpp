@@ -111,7 +111,45 @@ void deletionAtTail(Node *&head) {
     Node *delNode = temp->Next;
     temp->Next = NULL;
     delete delNode;
+  } else {
+    if (temp == NULL) {
+      cout << "There is no value in the Linked List" << endl;
+    } else {
+      deletionAtHead(head);
+    }
   }
+}
+
+Node *reverseNonRecursive(Node *&head) {
+  Node *prev = NULL;
+  Node *current = head;
+  if (head == NULL) {
+    return head;
+  }
+  Node *next = head->Next;
+
+  while (true) {
+    current->Next = prev;
+    prev = current;
+    current = next;
+    if (current == NULL)
+      break;
+    next = next->Next;
+  }
+  return prev;
+}
+
+Node *reverseRecursive(Node *&head) {
+  // Base call
+  if (head == NULL || head->Next == NULL) {
+    return head;
+  }
+
+  // Recursive call
+  Node *newHead = reverseRecursive(head->Next);
+  head->Next->Next = head;
+  head->Next = NULL;
+  return newHead;
 }
 
 /* Function to reverse the linked list */
