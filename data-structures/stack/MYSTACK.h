@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 
-class Node {
+template <typename N> class Node {
 public:
-  int value;
+  N value;
   Node *Next;
   Node *Prev;
 
@@ -14,9 +14,9 @@ public:
   }
 };
 
-class Stack {
-  Node *head;
-  Node *top;
+template <typename S> class Stack {
+  Node<S> *head;
+  Node<S> *top;
   int count = 0;
 
 public:
