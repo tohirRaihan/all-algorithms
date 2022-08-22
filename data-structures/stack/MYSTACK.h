@@ -74,10 +74,9 @@ public:
   int getTop() {
     if (top == NULL) {
       cout << "Stack Underflow | There is no element in top" << endl;
+      return -1;
     } else {
       return top->value;
     }
   }
 };
-
-int main(void) { return 0; }
