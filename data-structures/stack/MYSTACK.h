@@ -26,7 +26,7 @@ public:
   }
   // PUSH
   void push(int val) {
-    Node *newNode = new Node(val);
+    Node<S> *newNode = new Node<S>(val);
     if (head == NULL) {
       head = top = newNode;
       count++;
@@ -39,14 +39,14 @@ public:
     count++;
   }
   // POP
-  int pop() {
-    Node *delNode;
+  S pop() {
+    Node<S> *delNode;
     delNode = top;
-    int chk;
+    S chk;
     // there is no element in the stack
     if (head == NULL) {
       cout << "Stack Underflow" << endl;
-      return -1;
+      return chk;
     }
     // there is only one element
     if (top == head) {
@@ -71,12 +71,14 @@ public:
   // SIZE
   int size() { return count; }
   // TOP
-  int getTop() {
+  S getTop() {
+    S chk;
     if (top == NULL) {
       cout << "Stack Underflow | There is no element in top" << endl;
-      return -1;
+      return chk;
     } else {
-      return top->value;
+      chk = top->value;
     }
+    return chk;
   }
 };
