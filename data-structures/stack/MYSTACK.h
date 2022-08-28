@@ -25,7 +25,7 @@ public:
     top = NULL;
   }
   // PUSH
-  void push(int val) {
+  void push(S val) {
     Node<S> *newNode = new Node<S>(val);
     if (head == NULL) {
       head = top = newNode;
@@ -80,5 +80,16 @@ public:
       chk = top->value;
     }
     return chk;
+  }
+
+  // MIDE OF STACK
+  S mid() {
+    int mid = count/2 +1;
+    Node<S> *temp = head;
+    while (mid !=1) {
+      temp = temp->Next;
+      mid--;
+    }
+    return temp->value;
   }
 };

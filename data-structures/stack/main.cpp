@@ -7,8 +7,10 @@ int main(void) {
   st.push(1);
   st.push(2);
   st.push(3);
-  while (!st.empty()) {
-    cout << st.pop() << endl;
-  }
+  st.push(4);
+  st.push(5);
+  st.push(6);
+  st.push(7);
+  cout << st.mid()<<endl;
   return 0;
 }
