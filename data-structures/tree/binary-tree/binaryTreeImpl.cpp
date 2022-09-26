@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class TreeNode {
@@ -49,6 +50,36 @@ void spacePrint(int level) {
   }
 }
 
+void inOrder(TreeNode *root, string &chk) {
+  if (root == NULL) {
+    return;
+  }
+
+  inOrder(root->leftChild, chk);
+  chk += to_string(root->data);
+  inOrder(root->rightChild, chk);
+}
+
+void preOrder(TreeNode *root, string &chk) {
+  if (root == NULL) {
+    return;
+  }
+
+  chk += to_string(root->data);
+  preOrder(root->leftChild, chk);
+  preOrder(root->rightChild, chk);
+}
+
+void postOrder(TreeNode *root, string &chk) {
+  if (root == NULL) {
+    return;
+  }
+
+  chk += to_string(root->data);
+  postOrder(root->leftChild, chk);
+  postOrder(root->rightChild, chk);
+}
+
 int main() {
   int n;
   cin >> n;
@@ -73,6 +104,13 @@ int main() {
     }
   }
   printTree(allNodes[0], 0);
+  string inOrderTraversal = "";
+  string preOrderTraversal = "";
+  string postOrderTraversal = "";
+
+  inOrder(allNodes[0], inOrderTraversal);
+  preOrder(allNodes[0], preOrderTraversal);
+  postOrder(allNodes[0], postOrderTraversal);
 
   return 0;
 }
