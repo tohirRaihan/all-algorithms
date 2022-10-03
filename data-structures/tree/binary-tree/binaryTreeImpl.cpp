@@ -191,6 +191,41 @@ void boundryTraversal(TreeNode *root) {
   printRightNonLeaves(root->rightChild);
 }
 
+TreeNode *insertionBST(TreeNode *root, int value) {
+  TreeNode *newNode = new TreeNode(value);
+  if (root == NULL) {
+    root = newNode;
+    return root;
+  }
+  if (value < root->data) {
+    root->leftChild = insertionBST(root->leftChild, value);
+
+  } else if (value > root->data) {
+    root->rightChild = insertionBST(root->rightChild, value);
+  }
+  return root;
+}
+
+TreeNode *searchBST(TreeNode *root, int value) {
+  if (root == NULL) {
+    return NULL;
+  }
+  if (root->data == value) {
+    cout << root->data;
+    return root;
+  } else if (value < root->data) {
+    cout << root->data << " -> ";
+    searchBST(root->leftChild, value);
+  } else {
+    cout << root->data << " -> ";
+    searchBST(root->rightChild, value);
+  }
+
+  return root;
+}
+
+TreeNode *deletionBST(TreeNode *root, int value) {}
+
 int main() {
   // int n;
   // cin >> n;
@@ -226,20 +261,28 @@ int main() {
 
   // levelOrderTraversal(allNodes[0], levelordertraversal);
 
+  // int n;
+  // cin >> n;
+  // int preorder[n], inOrder[n];
+  // for (int i = 0; i < n; i++) {
+  //   cin >> preorder[i];
+  // }
+  // for (int i = 0; i < n; i++) {
+  //   cin >> inOrder[i];
+  // }
+  // TreeNode *root = buildPreIn(preorder, inOrder, 0, n - 1);
+  // string chk = "";
+  // preOrder(root, chk);
+  // cout << chk << endl << endl;
+
   int n;
   cin >> n;
-  int preorder[n], inOrder[n];
+  TreeNode *root = NULL;
   for (int i = 0; i < n; i++) {
-    cin >> preorder[i];
+    int value;
+    cin >> value;
+    root = insertionBST(root, value);
   }
-
-  for (int i = 0; i < n; i++) {
-    cin >> inOrder[i];
-  }
-  TreeNode *root = buildPreIn(preorder, inOrder, 0, n - 1);
-  string chk = "";
-  preOrder(root, chk);
-  cout << chk << endl << endl;
 
   return 0;
 }
