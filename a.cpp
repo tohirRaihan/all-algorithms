@@ -1,85 +1,42 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-class DoublyNode {
+class Node {
 public:
-  int value;
-  DoublyNode *Next;
-  DoublyNode *Prev;
+  int data;
+  Node *leftChild;
+  Node *rightChild;
 
-  DoublyNode(int val) {
-    this->value = val;
-    this->Next = NULL;
-    this->Prev = NULL;
+  Node(int value) {
+    this->data = value;
+    this->leftChild = NULL;
+    this->rightChild = NULL;
   }
 };
-
-void display(DoublyNode *n) {
-  while (n != NULL) {
-    cout << n->value << " ";
-    n = n->Next;
+vector<int> ans;
+void inorderTraversal(Node *root) {
+  if (root != NULL) {
+    inorderTraversal(root->leftChild);
+    ans.push_back(root->data);
+    inorderTraversal(root->rightChild);
   }
-  cout << endl;
+}
+int second_minimum(Node *root) {
+  inorderTraversal(root);
+  sort(ans.begin(), ans.end());
+  for (int i = 0; i < ans.size() - 1; i++)
+    if (ans[i] != ans[i + 1])
+      return ans[i + 1];
+  return -1;
 }
 
 int main(void) {
-  int n;
-  cin >> n;
-
-  DoublyNode *head = NULL;
-
-  for (int i = 1; i <= n; i++) {
-    int l, r;
-    cin >> l >> r;
-
-    DoublyNode *newNode = new DoublyNode(i);
-
-    int flag = 0;
-    DoublyNode *temp = head;
-
-    DoublyNode *leftNode = new DoublyNode(l);
-    DoublyNode *rightNode = new DoublyNode(r);
-    while (temp != NULL) {
-      if (temp->value == l) {
-        leftNode = temp;
-      } else if (temp->value == r) {
-        rightNode = temp;
-      }
-      temp = temp->Next;
-    }
-
-    if (r != 0) {
-      newNode->Next = rightNode;
-      rightNode->Prev = newNode;
-    }
-    if (l != 0) {
-      newNode->Prev = leftNode;
-      leftNode->Next = newNode;
-    }
-    if (i == 1) {
-      head = newNode;
-    }
-    while (head->Prev != NULL) {
-      head = head->Prev;
-    }
-
-
-    // temp = head;
-    // flag = 0;
-    // while (temp->Next !=NULL) {
-    //   if (temp->value == newNode->value) {
-    //     flag = 1;
-    //   }
-    //   temp = temp->Next;
-    // }
-    // if (flag == 0) {
-
-    //   temp->Next = newNode;
-    // }
-  }
-
-  cout << "output" << endl;
-  display(head);
+  Node *root = new Node(1);
+  Node *root1 = new Node(1);
+  Node *root2 = new Node(2);
+  root->leftChild = root1;
+  root->rightChild = root2;
+  cout << second_minimum(root);
 
   return 0;
 }
